@@ -1,17 +1,29 @@
 package org.mcalvot.formacion.pilotoSpringBoot.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class HelloController {
 
-    @RequestMapping ("/")
-    public String index(){
 
-        return "HELLO";
+    private String cadena = "Hola";
+
+    @GetMapping("/saludos")
+    public String saludos(){
+
+        return cadena;
     }
+
+    @PostMapping("/cambiarSaludos")
+    public CambiarSaludos cambiarSaludos(@RequestBody CambiarSaludos newCambiarSaludos){
+
+        cadena = newCambiarSaludos.getCadena();
+
+        return newCambiarSaludos;
+    }
+
+
 
 
 }
